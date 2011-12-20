@@ -1,0 +1,6 @@
+[submodule "JS-Game-Engine"]
+	path = JS-Game-Engine
+	url = git@github.com:TyOverby/JS-Game-Engine.git
+[submodule "js/engine"]
+	path = js/engine
+	url = git@github.com:TyOverby/JS-Game-Engine.git
