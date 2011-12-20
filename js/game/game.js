@@ -18,7 +18,8 @@ function basicGame(canvasID){
 		for(var i = 0;i<3;i++){
 			foods[i] =(new GameMath.Vector2f(GameMath.Random.randInt(0,gridCount-1),GameMath.Random.randInt(0,gridCount-1)));
 		}
-		cent[0]=new GameMath.Vector2f(gridCount-3,gridCount-3);
+		cent[0] = new GameMath.Vector2f(gridCount-3,gridCount-3);
+		cent[1] = new GameMath.Vector2f(gridCount-2,gridCount-2);
 	}
 
 	//////////////////////
@@ -57,7 +58,7 @@ function basicGame(canvasID){
 
 		// Check for snake collision
 		for(var i=1; i<cent.length;i++){
-			if(cent[0].equals(cent[i])&&cent.length>6){
+			if(cent[0].equals(cent[i])){
 				stop();
 			}
 		}
@@ -124,9 +125,6 @@ function basicGame(canvasID){
 				}
 			}
 		}
-
-		// Draw the score
-		console.log(scorePane.getContext());
 	}
 
 	this.isRunning = function(){
@@ -134,15 +132,16 @@ function basicGame(canvasID){
 	}
 }
 
-function inputHandler(work){
+inputHandler = function(e){
+	var key = event.keyCode;
 	var newDirection;
-	if(work==0){
+	if(key==87||key==38){        //Up
 		newDirection=new GameMath.Vector2f(0,-1);
-	} else if(work==180){
+	} else if(key==83||key==40){ // Down
 		newDirection=new GameMath.Vector2f(0,1);
-	} else if(work==90){
+	} else if(key==68||key==39){ // Right
 		newDirection = new GameMath.Vector2f(1,0);
-	} else if(work= 270){
+	} else if(key==65||key==37){ // Left
 		newDirection = new GameMath.Vector2f(-1,0);
 	}
 
@@ -159,9 +158,6 @@ function getColor(index,array){
 	var hue = index/array.length*360;
 	return "hsl("+hue+",100%,50%)";
 }
-
-KeyboardJS.bind.axis("w","s","a","d",inputHandler);
-KeyboardJS.bind.axis("up","down","left","right",inputHandler);
 
 function start(){
 	myGame = new basicGame("canvas");
